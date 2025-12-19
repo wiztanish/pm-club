@@ -9,15 +9,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
+    /* ==================== CSS Variables ==================== */
     :root {
-      --color-bg: #000000;
-      --color-text: #ffffff;
-      --color-accent: #2997ff;
-      --color-glass-border: rgba(255, 255, 255, 0.1);
-      --color-glass-bg: rgba(255, 255, 255, 0.08);
+      /* Primary: Very Dark Gray / Almost Black */
+      --color-bg: #111827;
+      /* Secondary: Pure White */
+      --color-text: #FFFFFF;
+      /* Accent: Vivid Purple */
+      --color-accent: #8B5CF6;
+      /* Neutral: Light Gray (Used for borders/subtext) */
+      --color-neutral: #F3F4F6;
+      
+      --color-glass-border: rgba(243, 244, 246, 0.1);
+      --color-glass-bg: rgba(17, 24, 39, 0.8);
       --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
+    /* ==================== Reset & Base ==================== */
     * {
       margin: 0;
       padding: 0;
@@ -37,26 +45,29 @@
       position: relative;
     }
 
+    /* PREMIUM POLISH: Custom Scrollbar (Updated for Gray/Purple) */
     ::-webkit-scrollbar {
       width: 10px;
     }
     ::-webkit-scrollbar-track {
-      background: #0a0a0a;
+      background: var(--color-bg);
     }
     ::-webkit-scrollbar-thumb {
-      background: #333;
+      background: #374151; /* Dark Gray */
       border-radius: 5px;
-      border: 2px solid #0a0a0a;
+      border: 2px solid var(--color-bg);
     }
     ::-webkit-scrollbar-thumb:hover {
       background: var(--color-accent);
     }
 
+    /* PREMIUM POLISH: Custom Text Selection */
     ::selection {
-      background: rgba(41, 151, 255, 0.3);
+      background: rgba(139, 92, 246, 0.4); /* Purple selection */
       color: white;
     }
 
+    /* PREMIUM POLISH: Noise Texture Overlay */
     .noise-overlay {
       position: fixed;
       top: 0;
@@ -65,10 +76,11 @@
       height: 100%;
       pointer-events: none;
       z-index: 9999;
-      opacity: 0.035;
+      opacity: 0.04;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
+    /* ==================== Navbar ==================== */
     .navbar {
       position: fixed;
       top: 0;
@@ -76,7 +88,7 @@
       right: 0;
       z-index: 1000;
       padding: 1.25rem 2rem;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(17, 24, 39, 0.85); /* Matches Dark Gray BG */
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--color-glass-border);
@@ -93,6 +105,7 @@
     .navbar-logo {
       font-size: 1.5rem;
       font-weight: 800;
+      /* Gradient from White to Purple */
       background: linear-gradient(135deg, var(--color-text) 0%, var(--color-accent) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -107,7 +120,7 @@
     }
 
     .navbar-links a {
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(243, 244, 246, 0.7); /* Neutral Light Gray */
       text-decoration: none;
       font-weight: 500;
       font-size: 0.95rem;
@@ -115,26 +128,27 @@
     }
 
     .navbar-links a:hover {
-      color: var(--color-text);
+      color: var(--color-accent);
     }
 
     .navbar-cta {
       background: var(--color-accent);
-      color: var(--color-text);
+      color: #FFFFFF; /* White text on Purple button */
       padding: 0.75rem 1.75rem;
       border-radius: 0.5rem;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.95rem;
       transition: all 0.3s ease;
-      box-shadow: 0 0 20px rgba(41, 151, 255, 0.3);
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
     }
 
     .navbar-cta:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 30px rgba(41, 151, 255, 0.5);
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
     }
 
+    /* Mobile Menu Toggle */
     .mobile-menu-toggle {
       display: none;
       flex-direction: column;
@@ -151,6 +165,7 @@
       transition: all 0.3s ease;
     }
 
+    /* ==================== Hero Section ==================== */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -162,6 +177,7 @@
       overflow: hidden;
     }
 
+    /* 3D Moving Grid - Adjusted for Purple Theme */
     .hero-grid {
       position: absolute;
       top: 0;
@@ -169,8 +185,8 @@
       right: 0;
       bottom: 0;
       background-image:
-        linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+        linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
       background-size: 50px 50px;
       transform: perspective(500px) rotateX(60deg);
       transform-origin: top center;
@@ -185,6 +201,7 @@
       100% { background-position: 0 500px; }
     }
 
+    /* Breathing Glow - Purple */
     .hero-glow {
       position: absolute;
       top: 20%;
@@ -192,7 +209,7 @@
       transform: translate(-50%, -50%);
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, rgba(41, 151, 255, 0.4) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, transparent 70%);
       filter: blur(80px);
       pointer-events: none;
       animation: breathe 8s ease-in-out infinite;
@@ -214,13 +231,14 @@
       align-items: center;
       gap: 0.5rem;
       padding: 0.5rem 1.25rem;
-      background: rgba(41, 151, 255, 0.1);
-      border: 1px solid rgba(41, 151, 255, 0.3);
+      background: rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.3);
       border-radius: 2rem;
       margin-bottom: 2rem;
       font-size: 0.9rem;
       font-weight: 600;
       animation: pulse 2s ease-in-out infinite;
+      color: var(--color-accent);
     }
 
     @keyframes pulse {
@@ -247,7 +265,8 @@
       line-height: 1.1;
       letter-spacing: -0.03em;
       margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, #ffffff 0%, var(--color-accent) 100%);
+      /* White to Purple Gradient */
+      background: linear-gradient(135deg, #FFFFFF 0%, var(--color-accent) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -256,7 +275,7 @@
 
     .hero-subtitle {
       font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(243, 244, 246, 0.7); /* Neutral Light Gray */
       max-width: 700px;
       margin: 0 auto 3rem;
       font-weight: 400;
@@ -271,25 +290,25 @@
 
     .btn-primary {
       background: var(--color-accent);
-      color: #000000;
+      color: #FFFFFF;
       padding: 1rem 2.5rem;
       border-radius: 0.75rem;
       text-decoration: none;
       font-weight: 700;
       font-size: 1.1rem;
       transition: all 0.3s ease;
-      box-shadow: 0 0 30px rgba(41, 151, 255, 0.4);
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
       border: none;
       cursor: pointer;
     }
 
     .btn-primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 0 50px rgba(41, 151, 255, 0.6);
+      box-shadow: 0 0 50px rgba(139, 92, 246, 0.6);
     }
 
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(243, 244, 246, 0.05);
       color: var(--color-text);
       padding: 1rem 2.5rem;
       border-radius: 0.75rem;
@@ -302,10 +321,11 @@
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(243, 244, 246, 0.1);
       transform: translateY(-3px);
     }
 
+    /* ==================== About Section - Bento Grid ==================== */
     .about {
       padding: 8rem 2rem;
       position: relative;
@@ -337,7 +357,7 @@
 
     .section-description {
       font-size: 1.2rem;
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(243, 244, 246, 0.6);
     }
 
     .bento-grid {
@@ -350,7 +370,7 @@
 
     .bento-card {
       position: relative;
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(31, 41, 55, 0.4); /* Dark Gray - lighter than bg */
       border: 1px solid var(--color-glass-border);
       border-radius: 1.5rem;
       padding: 3rem;
@@ -368,7 +388,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(139, 92, 246, 0.1) 0%, transparent 50%);
       opacity: 0;
       transition: opacity 0.3s ease;
       pointer-events: none;
@@ -379,7 +399,7 @@
     }
 
     .bento-card:hover {
-      border-color: rgba(255, 255, 255, 0.2);
+      border-color: rgba(139, 92, 246, 0.3);
       transform: translateY(-5px);
     }
 
@@ -404,8 +424,9 @@
       justify-content: center;
       margin-bottom: 2rem;
       font-size: 2.5rem;
+      /* Updated to Purple Monochromatic Gradients */
       background: linear-gradient(135deg, var(--icon-start), var(--icon-end));
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     }
 
     .bento-card h3 {
@@ -416,11 +437,12 @@
     }
 
     .bento-card p {
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(243, 244, 246, 0.6);
       font-size: 1.05rem;
       line-height: 1.7;
     }
 
+    /* ==================== Timeline Section ==================== */
     .timeline {
       padding: 8rem 2rem;
       position: relative;
@@ -480,7 +502,7 @@
       transform: translateX(-50%);
       width: 16px;
       height: 16px;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(243, 244, 246, 0.2);
       border: 3px solid var(--color-bg);
       border-radius: 50%;
       z-index: 10;
@@ -496,7 +518,7 @@
     }
 
     .timeline-card {
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(31, 41, 55, 0.4);
       border: 1px solid var(--color-glass-border);
       border-radius: 1.5rem;
       padding: 2.5rem;
@@ -521,14 +543,14 @@
     }
 
     .timeline-card p {
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(243, 244, 246, 0.6);
       font-size: 1.05rem;
       line-height: 1.7;
       margin-bottom: 1.5rem;
     }
 
     .timeline-card .date {
-      color: rgba(255, 255, 255, 0.4);
+      color: rgba(243, 244, 246, 0.4);
       font-size: 0.95rem;
       font-weight: 600;
     }
@@ -538,7 +560,7 @@
     }
 
     .footer {
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(31, 41, 55, 0.3);
       border-top: 1px solid var(--color-glass-border);
       padding: 6rem 2rem;
     }
@@ -566,7 +588,7 @@
     }
 
     .footer-brand p {
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(243, 244, 246, 0.5);
       line-height: 1.8;
       max-width: 350px;
     }
@@ -586,7 +608,7 @@
     }
 
     .footer-section ul li a {
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(243, 244, 246, 0.5);
       text-decoration: none;
       transition: color 0.3s ease;
     }
@@ -604,7 +626,7 @@
     }
 
     .footer-copyright {
-      color: rgba(255, 255, 255, 0.4);
+      color: rgba(243, 244, 246, 0.4);
     }
 
     .footer-socials {
@@ -613,7 +635,7 @@
     }
 
     .footer-socials a {
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(243, 244, 246, 0.5);
       text-decoration: none;
       font-size: 1.5rem;
       transition: all 0.3s ease;
@@ -641,7 +663,6 @@
         50% { opacity: 1; transform: scale(1.2); }
     }
 
-
     @media (max-width: 968px) {
       .navbar-links {
         display: flex; 
@@ -650,7 +671,7 @@
         left: 0;
         right: 0;
         flex-direction: column;
-        background: rgba(0, 0, 0, 0.95);
+        background: rgba(17, 24, 39, 0.95);
         backdrop-filter: blur(20px);
         padding: 2rem;
         gap: 1.5rem;
@@ -799,7 +820,7 @@
 
   <div class="bento-grid">
     <div class="bento-card span-3" data-card>
-      <div class="bento-icon" style="--icon-start: #ff6b6b; --icon-end: #ee5a6f;">
+      <div class="bento-icon" style="--icon-start: #8B5CF6; --icon-end: #A78BFA;">
         🚀
       </div>
       <h3>Build Real Products</h3>
@@ -807,7 +828,7 @@
     </div>
 
     <div class="bento-card span-3" data-card>
-      <div class="bento-icon" style="--icon-start: #4facfe; --icon-end: #00f2fe;">
+      <div class="bento-icon" style="--icon-start: #7C3AED; --icon-end: #8B5CF6;">
         💡
       </div>
       <h3>Learn from Experts</h3>
@@ -815,7 +836,7 @@
     </div>
 
     <div class="bento-card span-2" data-card>
-      <div class="bento-icon" style="--icon-start: #43e97b; --icon-end: #38f9d7;">
+      <div class="bento-icon" style="--icon-start: #6D28D9; --icon-end: #7C3AED;">
         🏆
       </div>
       <h3>Win Competitions</h3>
@@ -823,7 +844,7 @@
     </div>
 
     <div class="bento-card span-2" data-card>
-      <div class="bento-icon" style="--icon-start: #fa709a; --icon-end: #fee140;">
+      <div class="bento-icon" style="--icon-start: #C4B5FD; --icon-end: #8B5CF6;">
         🤝
       </div>
       <h3>Network & Grow</h3>
@@ -831,7 +852,7 @@
     </div>
 
     <div class="bento-card span-2" data-card>
-      <div class="bento-icon" style="--icon-start: #a8edea; --icon-end: #fed6e3;">
+      <div class="bento-icon" style="--icon-start: #8B5CF6; --icon-end: #6366F1;">
         📚
       </div>
       <h3>Skill Development</h3>
@@ -839,7 +860,7 @@
     </div>
 
     <div class="bento-card span-4" data-card>
-      <div class="bento-icon" style="--icon-start: #667eea; --icon-end: #764ba2;">
+      <div class="bento-icon" style="--icon-start: #4C1D95; --icon-end: #6D28D9;">
         ⚡
       </div>
       <h3>Fast-Track Your Career</h3>
@@ -872,6 +893,7 @@
       </div>
 
       <div class="timeline-item" data-timeline>
+        <div class="timeline-dot"></div>
         <div class="timeline-empty"></div>
         <div class="timeline-card">
           <div class="phase-number">Phase 2</div>
@@ -882,6 +904,7 @@
       </div>
 
       <div class="timeline-item" data-timeline>
+        <div class="timeline-dot"></div>
         <div class="timeline-card">
           <div class="phase-number">Phase 3</div>
           <h3>Technical Interview</h3>
@@ -892,6 +915,7 @@
       </div>
 
       <div class="timeline-item" data-timeline>
+        <div class="timeline-dot"></div>
         <div class="timeline-empty"></div>
         <div class="timeline-card">
           <div class="phase-number">Phase 4</div>
@@ -902,6 +926,7 @@
       </div>
 
       <div class="timeline-item" data-timeline>
+        <div class="timeline-dot"></div>
         <div class="timeline-card">
           <div class="phase-number">Phase 5</div>
           <h3>Welcome to PM Club</h3>
@@ -916,9 +941,9 @@
 
 <section id="apply" style="padding: 6rem 2rem; text-align: center; position: relative;">
   <div style="
-    max-width: 800px;
-    margin: 0 auto;
-    background: linear-gradient(180deg, rgba(41, 151, 255, 0.05) 0%, rgba(0,0,0,0) 100%);
+    max-width: 800px; 
+    margin: 0 auto; 
+    background: linear-gradient(180deg, rgba(139, 92, 246, 0.05) 0%, rgba(17, 24, 39, 0) 100%);
     border: 1px solid var(--color-glass-border);
     border-radius: 2rem;
     padding: 4rem 2rem;
@@ -1037,9 +1062,9 @@
     const currentScroll = window.pageYOffset;
 
     if (currentScroll > 100) {
-      navbar.style.background = 'rgba(0, 0, 0, 0.9)';
+      navbar.style.background = 'rgba(17, 24, 39, 0.9)';
     } else {
-      navbar.style.background = 'rgba(0, 0, 0, 0.7)';
+      navbar.style.background = 'rgba(17, 24, 39, 0.7)';
     }
 
     lastScroll = currentScroll;
@@ -1052,7 +1077,6 @@
     navbarLinks.classList.toggle('active');
   });
 
-  // Generate twinkling stars for the Apply section
   const applySectionBg = document.querySelector('#apply > div');
   const numStars = 30;
 
