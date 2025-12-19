@@ -11,11 +11,8 @@
   <style>
     
     :root {
-      /* CHANGED: Deep Blue Background */
       --color-bg: #020c1b; 
-      /* CHANGED: Soft White/Ice Blue Text */
       --color-text: #e6f1ff;
-      /* CHANGED: Bright Electric Blue Accent */
       --color-accent: #4facfe;
       
       --color-glass-border: rgba(230, 241, 255, 0.1);
@@ -42,7 +39,6 @@
       position: relative;
     }
 
-    /* PREMIUM POLISH: Custom Scrollbar (Updated for Blue Theme) */
     ::-webkit-scrollbar {
       width: 10px;
     }
@@ -50,7 +46,7 @@
       background: var(--color-bg);
     }
     ::-webkit-scrollbar-thumb {
-      background: #112240; /* Dark lighter blue */
+      background: #112240; 
       border-radius: 5px;
       border: 2px solid var(--color-bg);
     }
@@ -58,13 +54,11 @@
       background: var(--color-accent);
     }
 
-    /* PREMIUM POLISH: Custom Text Selection */
     ::selection {
       background: rgba(79, 172, 254, 0.3);
       color: white;
     }
 
-    /* PREMIUM POLISH: Noise Texture Overlay */
     .noise-overlay {
       position: fixed;
       top: 0;
@@ -77,7 +71,6 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
-    /* ==================== Navbar ==================== */
     .navbar {
       position: fixed;
       top: 0;
@@ -85,7 +78,7 @@
       right: 0;
       z-index: 1000;
       padding: 1.25rem 2rem;
-      background: rgba(2, 12, 27, 0.85); /* Matches Blue BG */
+      background: rgba(2, 12, 27, 0.85);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--color-glass-border);
@@ -129,7 +122,7 @@
 
     .navbar-cta {
       background: var(--color-accent);
-      color: var(--color-bg); /* Dark text on bright button */
+      color: var(--color-bg);
       padding: 0.75rem 1.75rem;
       border-radius: 0.5rem;
       text-decoration: none;
@@ -144,7 +137,6 @@
       box-shadow: 0 0 30px rgba(79, 172, 254, 0.5);
     }
 
-    /* Mobile Menu Toggle */
     .mobile-menu-toggle {
       display: none;
       flex-direction: column;
@@ -161,7 +153,6 @@
       transition: all 0.3s ease;
     }
 
-    /* ==================== Hero Section ==================== */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -173,7 +164,6 @@
       overflow: hidden;
     }
 
-    /* 3D Moving Grid - Adjusted for Blue Theme */
     .hero-grid {
       position: absolute;
       top: 0;
@@ -197,7 +187,6 @@
       100% { background-position: 0 500px; }
     }
 
-    /* Breathing Glow */
     .hero-glow {
       position: absolute;
       top: 20%;
@@ -320,7 +309,6 @@
       transform: translateY(-3px);
     }
 
-    /* ==================== About Section - Bento Grid ==================== */
     .about {
       padding: 8rem 2rem;
       position: relative;
@@ -365,7 +353,7 @@
 
     .bento-card {
       position: relative;
-      background: rgba(17, 34, 64, 0.4); /* Lighter navy for cards */
+      background: rgba(17, 34, 64, 0.4);
       border: 1px solid var(--color-glass-border);
       border-radius: 1.5rem;
       padding: 3rem;
