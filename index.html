@@ -624,6 +624,24 @@
       transform: translateY(-3px);
     }
 
+    /* Apply Section Star Animation */
+    .apply-star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      animation: twinkle var(--twinkle-duration, 3s) ease-in-out infinite var(--twinkle-delay, 0s);
+    }
+
+    @keyframes twinkle {
+        0%, 100% { opacity: 0.1; transform: scale(0.8); }
+        50% { opacity: 1; transform: scale(1.2); }
+    }
+
+
     @media (max-width: 968px) {
       .navbar-links {
         display: flex; 
@@ -854,7 +872,6 @@
       </div>
 
       <div class="timeline-item" data-timeline>
-        <div class="timeline-dot"></div>
         <div class="timeline-empty"></div>
         <div class="timeline-card">
           <div class="phase-number">Phase 2</div>
@@ -865,7 +882,6 @@
       </div>
 
       <div class="timeline-item" data-timeline>
-        <div class="timeline-dot"></div>
         <div class="timeline-card">
           <div class="phase-number">Phase 3</div>
           <h3>Technical Interview</h3>
@@ -876,7 +892,6 @@
       </div>
 
       <div class="timeline-item" data-timeline>
-        <div class="timeline-dot"></div>
         <div class="timeline-empty"></div>
         <div class="timeline-card">
           <div class="phase-number">Phase 4</div>
@@ -887,7 +902,6 @@
       </div>
 
       <div class="timeline-item" data-timeline>
-        <div class="timeline-dot"></div>
         <div class="timeline-card">
           <div class="phase-number">Phase 5</div>
           <h3>Welcome to PM Club</h3>
@@ -902,13 +916,15 @@
 
 <section id="apply" style="padding: 6rem 2rem; text-align: center; position: relative;">
   <div style="
-    max-width: 800px; 
-    margin: 0 auto; 
+    max-width: 800px;
+    margin: 0 auto;
     background: linear-gradient(180deg, rgba(41, 151, 255, 0.05) 0%, rgba(0,0,0,0) 100%);
     border: 1px solid var(--color-glass-border);
     border-radius: 2rem;
     padding: 4rem 2rem;
     backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
   ">
     <h2 class="section-title">Ready to Shape the Future?</h2>
     <p class="section-description" style="margin-bottom: 2.5rem;">
@@ -1035,6 +1051,20 @@
   mobileMenuToggle?.addEventListener('click', () => {
     navbarLinks.classList.toggle('active');
   });
+
+  // Generate twinkling stars for the Apply section
+  const applySectionBg = document.querySelector('#apply > div');
+  const numStars = 30;
+
+  for (let i = 0; i < numStars; i++) {
+    const star = document.createElement('div');
+    star.classList.add('apply-star');
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.setProperty('--twinkle-duration', `${3 + Math.random() * 4}s`);
+    star.style.setProperty('--twinkle-delay', `${Math.random() * 3}s`);
+    applySectionBg.appendChild(star);
+  }
 </script>
 </body>
 </html>
