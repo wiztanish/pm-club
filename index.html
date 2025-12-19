@@ -11,17 +11,21 @@
   <style>
     /* ==================== CSS Variables ==================== */
     :root {
-      /* Primary: Very Dark Gray / Almost Black */
-      --color-bg: #111827;
-      /* Secondary: Pure White */
-      --color-text: #FFFFFF;
-      /* Accent: Vivid Purple */
-      --color-accent: #8B5CF6;
-      /* Neutral: Light Gray (Used for borders/subtext) */
-      --color-neutral: #F3F4F6;
+      /* Primary: Midnight Blue */
+      --color-primary: #0A1128;
+      /* Background: White */
+      --color-bg: #FFFFFF;
+      /* Neutral: Light Gray */
+      --color-neutral: #F4F4F8;
+      /* Text: Midnight Blue (for high contrast on white) */
+      --color-text: #0A1128;
+      /* Text on Dark Backgrounds: White */
+      --color-text-light: #FFFFFF;
+      /* Accent: Soft Gold */
+      --color-accent: #FFD700;
+      /* Darker Gold for Text/Icons on light backgrounds for visibility */
+      --color-accent-dark: #D4AF37; 
       
-      --color-glass-border: rgba(243, 244, 246, 0.1);
-      --color-glass-bg: rgba(17, 24, 39, 0.8);
       --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
@@ -45,7 +49,7 @@
       position: relative;
     }
 
-    /* PREMIUM POLISH: Custom Scrollbar (Updated for Gray/Purple) */
+    /* Scrollbar */
     ::-webkit-scrollbar {
       width: 10px;
     }
@@ -53,21 +57,21 @@
       background: var(--color-bg);
     }
     ::-webkit-scrollbar-thumb {
-      background: #374151; /* Dark Gray */
+      background: #ccc;
       border-radius: 5px;
       border: 2px solid var(--color-bg);
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: var(--color-accent);
+      background: var(--color-accent-dark);
     }
 
-    /* PREMIUM POLISH: Custom Text Selection */
+    /* Selection */
     ::selection {
-      background: rgba(139, 92, 246, 0.4); /* Purple selection */
-      color: white;
+      background: rgba(255, 215, 0, 0.3); /* Gold tint */
+      color: var(--color-primary);
     }
 
-    /* PREMIUM POLISH: Noise Texture Overlay */
+    /* Noise Texture (Subtle on light mode) */
     .noise-overlay {
       position: fixed;
       top: 0;
@@ -76,11 +80,11 @@
       height: 100%;
       pointer-events: none;
       z-index: 9999;
-      opacity: 0.04;
+      opacity: 0.03; /* Lower opacity for light mode */
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
-    /* ==================== Navbar ==================== */
+    /* ==================== Navbar (Dark Blue Header) ==================== */
     .navbar {
       position: fixed;
       top: 0;
@@ -88,10 +92,10 @@
       right: 0;
       z-index: 1000;
       padding: 1.25rem 2rem;
-      background: rgba(17, 24, 39, 0.85); /* Matches Dark Gray BG */
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--color-glass-border);
+      background: rgba(10, 17, 40, 0.95); /* Midnight Blue */
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .navbar-container {
@@ -105,11 +109,7 @@
     .navbar-logo {
       font-size: 1.5rem;
       font-weight: 800;
-      /* Gradient from White to Purple */
-      background: linear-gradient(135deg, var(--color-text) 0%, var(--color-accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--color-text-light); /* White Logo */
       letter-spacing: -0.02em;
     }
 
@@ -120,7 +120,7 @@
     }
 
     .navbar-links a {
-      color: rgba(243, 244, 246, 0.7); /* Neutral Light Gray */
+      color: rgba(255, 255, 255, 0.8);
       text-decoration: none;
       font-weight: 500;
       font-size: 0.95rem;
@@ -128,24 +128,25 @@
     }
 
     .navbar-links a:hover {
-      color: var(--color-accent);
+      color: var(--color-accent); /* Gold hover */
     }
 
     .navbar-cta {
-      background: var(--color-accent);
-      color: #FFFFFF; /* White text on Purple button */
+      background: var(--color-accent); /* Gold Button */
+      color: var(--color-primary); /* Dark Text */
       padding: 0.75rem 1.75rem;
       border-radius: 0.5rem;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.95rem;
       transition: all 0.3s ease;
-      box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
     }
 
     .navbar-cta:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+      background: #ffdb1a; /* Slightly lighter gold */
     }
 
     /* Mobile Menu Toggle */
@@ -161,11 +162,11 @@
     .mobile-menu-toggle span {
       width: 24px;
       height: 2px;
-      background: var(--color-text);
+      background: var(--color-text-light);
       transition: all 0.3s ease;
     }
 
-    /* ==================== Hero Section ==================== */
+    /* ==================== Hero Section (Dark Blue Background) ==================== */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -174,10 +175,12 @@
       justify-content: center;
       text-align: center;
       padding: 8rem 2rem 4rem;
+      background-color: var(--color-primary); /* Midnight Blue Base */
+      color: var(--color-text-light); /* White Text */
       overflow: hidden;
     }
 
-    /* 3D Moving Grid - Adjusted for Purple Theme */
+    /* Grid on Dark Hero */
     .hero-grid {
       position: absolute;
       top: 0;
@@ -185,8 +188,8 @@
       right: 0;
       bottom: 0;
       background-image:
-        linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
       background-size: 50px 50px;
       transform: perspective(500px) rotateX(60deg);
       transform-origin: top center;
@@ -201,7 +204,7 @@
       100% { background-position: 0 500px; }
     }
 
-    /* Breathing Glow - Purple */
+    /* Hero Glow (Gold/Blue mix) */
     .hero-glow {
       position: absolute;
       top: 20%;
@@ -209,7 +212,7 @@
       transform: translate(-50%, -50%);
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
       filter: blur(80px);
       pointer-events: none;
       animation: breathe 8s ease-in-out infinite;
@@ -231,14 +234,14 @@
       align-items: center;
       gap: 0.5rem;
       padding: 0.5rem 1.25rem;
-      background: rgba(139, 92, 246, 0.1);
-      border: 1px solid rgba(139, 92, 246, 0.3);
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.3);
       border-radius: 2rem;
       margin-bottom: 2rem;
       font-size: 0.9rem;
       font-weight: 600;
-      animation: pulse 2s ease-in-out infinite;
       color: var(--color-accent);
+      animation: pulse 2s ease-in-out infinite;
     }
 
     @keyframes pulse {
@@ -265,17 +268,13 @@
       line-height: 1.1;
       letter-spacing: -0.03em;
       margin-bottom: 1.5rem;
-      /* White to Purple Gradient */
-      background: linear-gradient(135deg, #FFFFFF 0%, var(--color-accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: white; /* Keep Hero Title White */
       text-wrap: balance;
     }
 
     .hero-subtitle {
       font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      color: rgba(243, 244, 246, 0.7); /* Neutral Light Gray */
+      color: rgba(255, 255, 255, 0.7);
       max-width: 700px;
       margin: 0 auto 3rem;
       font-weight: 400;
@@ -290,45 +289,46 @@
 
     .btn-primary {
       background: var(--color-accent);
-      color: #FFFFFF;
+      color: var(--color-primary);
       padding: 1rem 2.5rem;
       border-radius: 0.75rem;
       text-decoration: none;
       font-weight: 700;
       font-size: 1.1rem;
       transition: all 0.3s ease;
-      box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
       border: none;
       cursor: pointer;
     }
 
     .btn-primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 0 50px rgba(139, 92, 246, 0.6);
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
     }
 
     .btn-secondary {
-      background: rgba(243, 244, 246, 0.05);
-      color: var(--color-text);
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
       padding: 1rem 2.5rem;
       border-radius: 0.75rem;
       text-decoration: none;
       font-weight: 700;
       font-size: 1.1rem;
       transition: all 0.3s ease;
-      border: 1px solid var(--color-glass-border);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(10px);
     }
 
     .btn-secondary:hover {
-      background: rgba(243, 244, 246, 0.1);
+      background: rgba(255, 255, 255, 0.2);
       transform: translateY(-3px);
     }
 
-    /* ==================== About Section - Bento Grid ==================== */
+    /* ==================== About Section (White/Light Gray Background) ==================== */
     .about {
       padding: 8rem 2rem;
       position: relative;
+      background-color: var(--color-bg); /* White */
     }
 
     .section-header {
@@ -339,7 +339,7 @@
 
     .section-tag {
       display: inline-block;
-      color: var(--color-accent);
+      color: var(--color-accent-dark); /* Darker Gold for visibility */
       font-weight: 700;
       font-size: 0.9rem;
       text-transform: uppercase;
@@ -352,12 +352,13 @@
       font-weight: 900;
       letter-spacing: -0.02em;
       margin-bottom: 1rem;
+      color: var(--color-primary); /* Dark Blue Text */
       text-wrap: balance;
     }
 
     .section-description {
       font-size: 1.2rem;
-      color: rgba(243, 244, 246, 0.6);
+      color: #555; /* Dark Gray for subtext */
     }
 
     .bento-grid {
@@ -370,17 +371,16 @@
 
     .bento-card {
       position: relative;
-      background: rgba(31, 41, 55, 0.4); /* Dark Gray - lighter than bg */
-      border: 1px solid var(--color-glass-border);
+      background: var(--color-neutral); /* Light Gray Card */
+      border: 1px solid #e0e0e0;
       border-radius: 1.5rem;
       padding: 3rem;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
       overflow: hidden;
       transition: all 0.3s ease;
       cursor: pointer;
     }
 
+    /* Subtle Gold Hover Glow for Cards */
     .bento-card::before {
       content: '';
       position: absolute;
@@ -388,7 +388,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 215, 0, 0.1) 0%, transparent 50%);
       opacity: 0;
       transition: opacity 0.3s ease;
       pointer-events: none;
@@ -399,8 +399,9 @@
     }
 
     .bento-card:hover {
-      border-color: rgba(139, 92, 246, 0.3);
+      border-color: var(--color-accent);
       transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     }
 
     .bento-card.span-2 {
@@ -424,9 +425,10 @@
       justify-content: center;
       margin-bottom: 2rem;
       font-size: 2.5rem;
-      /* Updated to Purple Monochromatic Gradients */
-      background: linear-gradient(135deg, var(--icon-start), var(--icon-end));
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      /* Using Midnight Blue gradients for icons to pop on light gray */
+      background: linear-gradient(135deg, #0A1128, #1C2B5E);
+      color: var(--color-accent); /* Gold Icon */
+      box-shadow: 0 10px 20px rgba(10, 17, 40, 0.15);
     }
 
     .bento-card h3 {
@@ -434,10 +436,11 @@
       font-weight: 800;
       margin-bottom: 1rem;
       letter-spacing: -0.01em;
+      color: var(--color-primary);
     }
 
     .bento-card p {
-      color: rgba(243, 244, 246, 0.6);
+      color: #666;
       font-size: 1.05rem;
       line-height: 1.7;
     }
@@ -446,6 +449,7 @@
     .timeline {
       padding: 8rem 2rem;
       position: relative;
+      background-color: #FFFFFF;
     }
 
     .timeline-container {
@@ -460,8 +464,9 @@
       top: 0;
       bottom: 0;
       width: 2px;
-      background: linear-gradient(to bottom, var(--color-accent) 0%, transparent 100%);
+      background: linear-gradient(to bottom, var(--color-primary) 0%, transparent 100%);
       transform: translateX(-50%);
+      opacity: 0.2;
     }
 
     .timeline-items {
@@ -502,32 +507,30 @@
       transform: translateX(-50%);
       width: 16px;
       height: 16px;
-      background: rgba(243, 244, 246, 0.2);
-      border: 3px solid var(--color-bg);
+      background: #ccc;
+      border: 3px solid #fff;
       border-radius: 50%;
       z-index: 10;
       transition: all 0.5s ease;
     }
 
     .timeline-item.active .timeline-dot {
-      background: var(--color-accent);
-      box-shadow: 0 0 15px var(--color-accent), 0 0 30px var(--color-accent);
+      background: var(--color-accent); /* Gold Dot */
+      box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
       width: 20px;
       height: 20px;
       border: none;
     }
 
     .timeline-card {
-      background: rgba(31, 41, 55, 0.4);
-      border: 1px solid var(--color-glass-border);
+      background: var(--color-neutral);
+      border: 1px solid #e0e0e0;
       border-radius: 1.5rem;
       padding: 2.5rem;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
     }
 
     .timeline-card .phase-number {
-      color: var(--color-accent);
+      color: var(--color-accent-dark);
       font-size: 0.9rem;
       font-weight: 700;
       text-transform: uppercase;
@@ -540,17 +543,18 @@
       font-weight: 800;
       margin-bottom: 1rem;
       letter-spacing: -0.01em;
+      color: var(--color-primary);
     }
 
     .timeline-card p {
-      color: rgba(243, 244, 246, 0.6);
+      color: #666;
       font-size: 1.05rem;
       line-height: 1.7;
       margin-bottom: 1.5rem;
     }
 
     .timeline-card .date {
-      color: rgba(243, 244, 246, 0.4);
+      color: #888;
       font-size: 0.95rem;
       font-weight: 600;
     }
@@ -559,9 +563,10 @@
       display: none;
     }
 
+    /* ==================== Footer (Dark Blue) ==================== */
     .footer {
-      background: rgba(31, 41, 55, 0.3);
-      border-top: 1px solid var(--color-glass-border);
+      background: var(--color-primary); /* Midnight Blue */
+      color: var(--color-text-light);
       padding: 6rem 2rem;
     }
 
@@ -581,14 +586,11 @@
       font-size: 2rem;
       font-weight: 800;
       margin-bottom: 1rem;
-      background: linear-gradient(135deg, var(--color-text) 0%, var(--color-accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: white;
     }
 
     .footer-brand p {
-      color: rgba(243, 244, 246, 0.5);
+      color: rgba(255, 255, 255, 0.6);
       line-height: 1.8;
       max-width: 350px;
     }
@@ -597,6 +599,7 @@
       font-size: 1.1rem;
       font-weight: 700;
       margin-bottom: 1.5rem;
+      color: white;
     }
 
     .footer-section ul {
@@ -608,13 +611,13 @@
     }
 
     .footer-section ul li a {
-      color: rgba(243, 244, 246, 0.5);
+      color: rgba(255, 255, 255, 0.6);
       text-decoration: none;
       transition: color 0.3s ease;
     }
 
     .footer-section ul li a:hover {
-      color: var(--color-text);
+      color: var(--color-accent);
     }
 
     .footer-bottom {
@@ -622,11 +625,11 @@
       justify-content: space-between;
       align-items: center;
       padding-top: 3rem;
-      border-top: 1px solid var(--color-glass-border);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .footer-copyright {
-      color: rgba(243, 244, 246, 0.4);
+      color: rgba(255, 255, 255, 0.4);
     }
 
     .footer-socials {
@@ -635,7 +638,7 @@
     }
 
     .footer-socials a {
-      color: rgba(243, 244, 246, 0.5);
+      color: rgba(255, 255, 255, 0.6);
       text-decoration: none;
       font-size: 1.5rem;
       transition: all 0.3s ease;
@@ -651,11 +654,29 @@
       position: absolute;
       width: 2px;
       height: 2px;
-      background: white;
+      background: var(--color-primary); /* Dark stars on light bg? Or white stars on dark box? */
       border-radius: 50%;
       pointer-events: none;
       opacity: 0;
       animation: twinkle var(--twinkle-duration, 3s) ease-in-out infinite var(--twinkle-delay, 0s);
+    }
+    
+    /* Modify Apply Box to be Dark Blue for contrast with stars */
+    #apply-box {
+      background: linear-gradient(180deg, #0A1128 0%, #1C2B5E 100%) !important;
+      color: white;
+    }
+    
+    #apply-box h2 {
+      color: white;
+    }
+    
+    #apply-box p {
+      color: rgba(255,255,255,0.8);
+    }
+    
+    #apply-box .apply-star {
+        background: white; /* White stars on dark apply box */
     }
 
     @keyframes twinkle {
@@ -671,11 +692,11 @@
         left: 0;
         right: 0;
         flex-direction: column;
-        background: rgba(17, 24, 39, 0.95);
+        background: rgba(10, 17, 40, 0.98);
         backdrop-filter: blur(20px);
         padding: 2rem;
         gap: 1.5rem;
-        border-bottom: 1px solid var(--color-glass-border);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         transform: translateY(-20px);
         opacity: 0;
         pointer-events: none;
@@ -820,7 +841,7 @@
 
   <div class="bento-grid">
     <div class="bento-card span-3" data-card>
-      <div class="bento-icon" style="--icon-start: #8B5CF6; --icon-end: #A78BFA;">
+      <div class="bento-icon">
         🚀
       </div>
       <h3>Build Real Products</h3>
@@ -828,7 +849,7 @@
     </div>
 
     <div class="bento-card span-3" data-card>
-      <div class="bento-icon" style="--icon-start: #7C3AED; --icon-end: #8B5CF6;">
+      <div class="bento-icon">
         💡
       </div>
       <h3>Learn from Experts</h3>
@@ -836,7 +857,7 @@
     </div>
 
     <div class="bento-card span-2" data-card>
-      <div class="bento-icon" style="--icon-start: #6D28D9; --icon-end: #7C3AED;">
+      <div class="bento-icon">
         🏆
       </div>
       <h3>Win Competitions</h3>
@@ -844,7 +865,7 @@
     </div>
 
     <div class="bento-card span-2" data-card>
-      <div class="bento-icon" style="--icon-start: #C4B5FD; --icon-end: #8B5CF6;">
+      <div class="bento-icon">
         🤝
       </div>
       <h3>Network & Grow</h3>
@@ -852,7 +873,7 @@
     </div>
 
     <div class="bento-card span-2" data-card>
-      <div class="bento-icon" style="--icon-start: #8B5CF6; --icon-end: #6366F1;">
+      <div class="bento-icon">
         📚
       </div>
       <h3>Skill Development</h3>
@@ -860,7 +881,7 @@
     </div>
 
     <div class="bento-card span-4" data-card>
-      <div class="bento-icon" style="--icon-start: #4C1D95; --icon-end: #6D28D9;">
+      <div class="bento-icon">
         ⚡
       </div>
       <h3>Fast-Track Your Career</h3>
@@ -893,7 +914,6 @@
       </div>
 
       <div class="timeline-item" data-timeline>
-        <div class="timeline-dot"></div>
         <div class="timeline-empty"></div>
         <div class="timeline-card">
           <div class="phase-number">Phase 2</div>
@@ -904,7 +924,6 @@
       </div>
 
       <div class="timeline-item" data-timeline>
-        <div class="timeline-dot"></div>
         <div class="timeline-card">
           <div class="phase-number">Phase 3</div>
           <h3>Technical Interview</h3>
@@ -915,7 +934,6 @@
       </div>
 
       <div class="timeline-item" data-timeline>
-        <div class="timeline-dot"></div>
         <div class="timeline-empty"></div>
         <div class="timeline-card">
           <div class="phase-number">Phase 4</div>
@@ -926,7 +944,6 @@
       </div>
 
       <div class="timeline-item" data-timeline>
-        <div class="timeline-dot"></div>
         <div class="timeline-card">
           <div class="phase-number">Phase 5</div>
           <h3>Welcome to PM Club</h3>
@@ -940,16 +957,14 @@
 </section>
 
 <section id="apply" style="padding: 6rem 2rem; text-align: center; position: relative;">
-  <div style="
+  <div id="apply-box" style="
     max-width: 800px; 
     margin: 0 auto; 
-    background: linear-gradient(180deg, rgba(139, 92, 246, 0.05) 0%, rgba(17, 24, 39, 0) 100%);
-    border: 1px solid var(--color-glass-border);
     border-radius: 2rem;
     padding: 4rem 2rem;
-    backdrop-filter: blur(10px);
     position: relative;
     overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
   ">
     <h2 class="section-title">Ready to Shape the Future?</h2>
     <p class="section-description" style="margin-bottom: 2.5rem;">
@@ -1062,9 +1077,9 @@
     const currentScroll = window.pageYOffset;
 
     if (currentScroll > 100) {
-      navbar.style.background = 'rgba(17, 24, 39, 0.9)';
+      navbar.style.background = 'rgba(10, 17, 40, 0.98)';
     } else {
-      navbar.style.background = 'rgba(17, 24, 39, 0.7)';
+      navbar.style.background = 'rgba(10, 17, 40, 0.95)';
     }
 
     lastScroll = currentScroll;
@@ -1077,7 +1092,8 @@
     navbarLinks.classList.toggle('active');
   });
 
-  const applySectionBg = document.querySelector('#apply > div');
+  // Generate twinkling stars for the Apply section
+  const applySectionBg = document.querySelector('#apply-box');
   const numStars = 30;
 
   for (let i = 0; i < numStars; i++) {
